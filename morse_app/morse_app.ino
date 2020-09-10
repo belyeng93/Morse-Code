@@ -7,7 +7,7 @@
 Adafruit_NeoPixel strip(NUM_LEDS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 // Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
-String phrase = "monte subasio";
+String phrase = "e";
 
 void setup()
 {
@@ -33,7 +33,11 @@ void setup()
 
 void loop()
 {
+    emit_start();
     emit_morse(phrase);
+    emit_end();
+
+
 
     //end signal
 }
@@ -86,7 +90,6 @@ void emit_letter(String letter)
 
 }
 
-
 void emit_light(char morse_letter)
 {
     if(morse_letter == '.')
@@ -125,4 +128,75 @@ void emit_light(char morse_letter)
 void emit_sound(char morse_letter)
 {
    tone(BUZZER_PIN, TONE_FREQUENCY);
+}
+
+
+void emit_end()
+{
+    for(int idx = 0; idx < NUM_LEDS; idx++)
+    {
+        strip.setPixelColor(idx, 255,0,0);
+    }
+    strip.show();
+
+    int ii = 5000;
+    while(ii > 0)
+    {
+        tone(BUZZER_PIN, ii);
+        delay(100);
+        noTone(BUZZER_PIN);
+        delay(100);
+        ii =  ii - 500;
+
+    }
+    // for(int idx = 0; idx < 2; idx++)
+    // {
+    //     tone(BUZZER_PIN, 5000);
+    //     delay(100);
+    //     noTone(BUZZER_PIN);
+    //     delay(100);
+    //     // tone(BUZZER_PIN, 200);
+    //     // delay(100);
+    //     // noTone(BUZZER_PIN);
+    //     // delay(100);
+    // }
+
+
+    delay(DELAY_END_PHRASE);
+
+    noTone(BUZZER_PIN);
+    strip.clear();
+    strip.show();
+
+}
+
+void emit_start()
+{
+    for(int idx = 0; idx < NUM_LEDS; idx++)
+    {
+        strip.setPixelColor(idx, 0,255,0);
+    }
+    strip.show();
+
+    for(int idx = 0; idx < 2; idx++)
+    {
+        tone(BUZZER_PIN, 5000);
+        delay(100);
+        noTone(BUZZER_PIN);
+        delay(100);
+        tone(BUZZER_PIN, 200);
+        delay(100);
+        noTone(BUZZER_PIN);
+        delay(100);
+    }
+    
+
+
+    delay(DELAY_END_PHRASE);
+
+    noTone(BUZZER_PIN);
+    strip.clear();
+    strip.show();
+
+    delay(100);
 }
