@@ -10,8 +10,7 @@
 /*-----------------------------------*
  * INCLUDE FILES
  *-----------------------------------*/
-#include "morse.h"
-
+#include "include/morse.hpp"
 /*-----------------------------------*
  * PUBLIC VARIABLE DEFINITIONS
  *-----------------------------------*/
@@ -54,10 +53,10 @@ static String parseLetter(char letter);
 /*-----------------------------------*
  * PUBLIC FUNCTION DEFINITIONS
  *-----------------------------------*/
-String[] parseString(String phrase, int *len)
+void parseString(String phrase, String* parsedString, int len)
 {
-	String[] parsedString = new String[&len];
-	for(int idx ; idx < &len; idx++)
+	// String parsedString [len];
+	for(int idx ; idx < len; idx++)
 	{
 		parsedString[idx] = parseLetter(phrase.charAt(idx));
 	}
@@ -73,145 +72,150 @@ static String parseLetter(char letter)
 	{
 	case 'a':
 	{
-		return ".-"
+		return ".-";
 		break;
 	}
 	case 'b':
 	{
-		return "-..."
+		return "-...";
 		break;
 	}
 	case 'c':
 	{
-		return "-.-."
+		return "-.-.";
 		break;
 	}
 	case 'd':
 	{
-		return "-.."
+		return "-..";
 		break;
 	}
 	case 'e':
 	{
-		return "."
+		return ".";
 		break;
 	}
 	case 'f':
 	{
-		return "..-."
+		return "..-.";
 		break;
 	}
 	case 'g':
 	{
-		return "--."
+		return "--.";
 		break;
 	}
 	case 'h':
 	{
-		return "...."
+		return "....";
 		break;
 	}
 	case 'i':
 	{
-		return ".."
+		return "..";
 		break;
 	}
 	case 'j':
 	{
-		return ".---"
+		return ".---";
 		break;
 	}
 	case 'k':
 	{
-		return "-.-"
+		return "-.-";
 		break;
 	}
 	case 'l':
 	{
-		return ".-.."
+		return ".-..";
 		break;
 	}
 	case 'm':
 	{
-		return "--"
+		return "--";
 		break;
 	}
 	case 'n':
 	{
-		return "-."
+		return "-.";
 		break;
 	}
 	case 'o':
 	{
-		return "---"
+		return "---";
 		break;
 	}
 	case 'p':
 	{
-		return ".--."
+		return ".--.";
 		break;
 	}
 	case 'q':
 	{
-		return "--.-"
+		return "--.-";
 		break;
 	}
 	case 'r':
 	{
-		return ".-."
+		return ".-.";
 		break;
 	}
 	case 's':
 	{
-		return "..."
+		return "...";
 		break;
 	}
 	case 't':
 	{
-		return "-"
+		return "-";
 		break;
 	}
 	case 'u':
 	{
-		return "..-"
+		return "..-";
 		break;
 	}
 	case 'v':
 	{
-		return "...-"
+		return "...-";
 		break;
 	}
 	case 'w':
 	{
-		return ".--"
+		return ".--";
 		break;
 	}
 	case 'x':
 	{
-		return "-..-"
+		return "-..-";
 		break;
 	}
 	case 'y':
 	{
-		return "-.--"
+		return "-.--";
 		break;
 	}
 
 	case 'z':
 	{
-		return "--.."
+		return "--..";
 		break;
 	}
 
 	case ' ':
 	{
-		return "--.."
+		return "--..";
 		break;
 	}
 
 	default:
+	{
+		return " ";
+		break;
+	}
 
 
+	}
 }
 
 

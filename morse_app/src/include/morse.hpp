@@ -11,10 +11,12 @@
 #define MORSE_HPP
 
 
+
+
 /*-----------------------------------*
  * INCLUDE FILES
  *-----------------------------------*/
-
+#include <Arduino.h> 
 /*-----------------------------------*
  * PUBLIC DEFINES
  *-----------------------------------*/
@@ -41,8 +43,8 @@
 /**
  * @brief   ExampleFunctionA description
  */
-String[] parseString(String phrase);
-
+// String* parseString(String phrase, int len);
+void parseString(String phrase, String* parsedString, int len);
 
 
 
