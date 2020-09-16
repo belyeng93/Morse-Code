@@ -30,7 +30,6 @@
 /*-----------------------------------*
  * PUBLIC TYPEDEFS
  *-----------------------------------*/
-/* None */
 
 /*-----------------------------------*
  * PUBLIC VARIABLE DECLARATIONS
@@ -46,7 +45,7 @@
 // String* parseString(String phrase, int len);
 void parseString(String phrase, String* parsedString, int len);
 
-
+char parseMorse(String morse);
 
 #endif /* TEMPLATE_C_H */
 

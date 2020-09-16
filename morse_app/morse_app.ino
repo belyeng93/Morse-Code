@@ -3,11 +3,15 @@
 
 #include <Adafruit_NeoPixel.h>
 
+#define TEST
+
 
 Adafruit_NeoPixel strip(NUM_LEDS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 // Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
-String phrase = "e";
+String phrase = "parcheggio degli stazzi";
+int len_ph = phrase.length();
+char *rec_phrase;
 
 void setup()
 {
@@ -28,6 +32,8 @@ void setup()
     color_led = strip.Color(0, 0, 255);
 
     strip.setBrightness(20);
+
+    rec_phrase = new char[len_ph];
 	
 }
 
@@ -36,7 +42,9 @@ void loop()
     emit_start();
     emit_morse(phrase);
     emit_end();
-
+#ifdef TEST
+    check_conversion(rec_phrase, len_ph);
+#endif
 
 
     //end signal
@@ -55,6 +63,7 @@ void emit_morse(String phrase)
     {
         Serial.println(morse[j]);
         emit_letter(morse[j]);
+        rec_phrase[j] = parseMorse(morse[j]);
 
     }
 
@@ -130,6 +139,14 @@ void emit_sound(char morse_letter)
    tone(BUZZER_PIN, TONE_FREQUENCY);
 }
 
+void check_conversion(char* phrase_rec, int len_ph_rec)
+{
+    for(int j = 0; j < len_ph_rec; j++)
+    {
+        Serial.print(phrase_rec[j]);
+    }
+    Serial.println("");
+}
 
 void emit_end()
 {
